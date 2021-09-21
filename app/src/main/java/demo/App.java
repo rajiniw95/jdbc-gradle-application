@@ -11,11 +11,13 @@ public class App {
 
 	static Connection connection;
     	
-    	public void App() {
+    	public App() {
         	try {
             	connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/coursedb", "root", "rajiniw95");
+            	System.out.println("Connected");
         	} catch (Exception e){
             	e.printStackTrace();
+            	System.out.println("NOT Connected");
         	}
     	}
 
@@ -24,6 +26,8 @@ public class App {
         	try {
         		App app = new App();
             		//connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/coursedb", "root", "rajiniw95");
+            		System.out.println("MAIN");
+            		
             		Statement statement = connection.createStatement();
             		ResultSet resultset = statement.executeQuery("select * from courses");
 
