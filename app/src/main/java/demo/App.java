@@ -8,15 +8,22 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class App {
-	public String getGreeting() {
-        	return "Hello World!";
-    	}
+
+	static Connection connection;
     	
+    	public void App() {
+        	try {
+            	connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/coursedb", "root", "rajiniw95");
+        	} catch (Exception e){
+            	e.printStackTrace();
+        	}
+    	}
 
     	public static void main(String[] args) {
         	//System.out.println(new App().getGreeting());
         	try {
-            		Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/coursedb", "root", "rajiniw95");
+        		App app = new App();
+            		//connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/coursedb", "root", "rajiniw95");
             		Statement statement = connection.createStatement();
             		ResultSet resultset = statement.executeQuery("select * from courses");
 
@@ -48,6 +55,10 @@ public class App {
         	catch (Exception e){
          		e.printStackTrace();
         	}
+    	}
+    	
+    	public String getGreeting() {
+        	return "Hello World!";
     	}
     	
 }
